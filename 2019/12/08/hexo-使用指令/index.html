@@ -8,15 +8,18 @@
   <link rel="dns-prefetch" href="https://yadong.github.io">
   <title>hexo 使用指令 | 岽的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hexo init         初始化   npm install  hexo-deployer-git –savehexo d   deploy   部署到远端   hexo  new         创建文章hexo  start  s    开启服务可以子啊本地预览hexo  g           生产 hexo clean        在修改配置以后重新清扫一下hexo  g">
+  <meta name="description" content="hexo 使用">
+<meta name="keywords" content="博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 使用指令">
 <meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2019&#x2F;12&#x2F;08&#x2F;hexo-%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4&#x2F;index.html">
 <meta property="og:site_name" content="岽的博客">
-<meta property="og:description" content="hexo init         初始化   npm install  hexo-deployer-git –savehexo d   deploy   部署到远端   hexo  new         创建文章hexo  start  s    开启服务可以子啊本地预览hexo  g           生产 hexo clean        在修改配置以后重新清扫一下hexo  g">
+<meta property="og:description" content="hexo 使用">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-08T05:35:00.377Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;%25AQRRM%7DHW%25@RNX%28%29BLMJN3M.png">
+<meta property="og:updated_time" content="2019-12-08T06:43:12.807Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;%25AQRRM%7DHW%25@RNX%28%29BLMJN3M.png">
   
     <link rel="alternative" href="/atom.xml" title="岽的博客" type="application/atom+xml">
   
@@ -66,28 +69,28 @@
 		<nav class="header-smart-menu">
     		
     			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)" target="_blank" rel="noopener">所有文章</a>
+    			<a q-on="click: openSlider(e, 'innerArchive')" target="_parent"  href="javascript:void(0)">所有文章</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)" target="_blank" rel="noopener">友链</a>
+    			<a q-on="click: openSlider(e, 'friends')" target="_parent"  href="javascript:void(0)">友链</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)" target="_blank" rel="noopener">关于我</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" target="_parent"  href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_parent" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_parent" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="rss" target="_parent" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_parent" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -176,11 +179,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>hexo 使用</p>
+<a id="more"></a>
+
 <p>hexo init         初始化  </p>
 <p>npm install  hexo-deployer-git –save<br>hexo d   deploy   部署到远端  </p>
 <p>hexo  new         创建文章<br>hexo  start  s    开启服务可以子啊本地预览<br>hexo  g           生产</p>
 <p>hexo clean        在修改配置以后重新清扫一下<br>hexo  g           再重新生成<br>hexo  d           重新部署</p>
+<hr>
+<p>碰到一个 yilia 点击所有文章 都会打开一个新的空白页的问题<br>解决方法：<img src="http://abc.gsyad51.cn/%25AQRRM%7DHW%25@RNX%28%29BLMJN3M.png" alt=""></p>
+<hr>
+<p>目前还未解决 就是 yilia 的随笔问题</p>
 
       
 
@@ -210,6 +219,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -400,6 +420,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">博客</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -453,7 +477,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">一个小弱鸡呜呜呜</div>
   	  	
     	</section>
     
