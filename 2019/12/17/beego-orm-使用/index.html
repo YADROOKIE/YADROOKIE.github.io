@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="linux,java," />
+  <meta name="keywords" content="go," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="java 中时间格式化linux 后台运行程序命令">
-<meta name="keywords" content="linux,java">
+<meta name="description" content="使用 beego orm  进行数据库操作">
+<meta name="keywords" content="go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="仓库管理系统开发杂记">
-<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0&#x2F;index.html">
+<meta property="og:title" content="beego orm 使用">
+<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2019&#x2F;12&#x2F;17&#x2F;beego-orm-%E4%BD%BF%E7%94%A8&#x2F;index.html">
 <meta property="og:site_name" content="岽">
-<meta property="og:description" content="java 中时间格式化linux 后台运行程序命令">
+<meta property="og:description" content="使用 beego orm  进行数据库操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-16T11:09:23.096Z">
+<meta property="og:updated_time" content="2019-12-17T09:17:49.533Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://yadong.github.io/2019/12/16/仓库管理系统开发杂记/"/>
+  <link rel="canonical" href="https://yadong.github.io/2019/12/17/beego-orm-使用/"/>
 
 
 
 
 
-  <title>仓库管理系统开发杂记 | 岽</title>
+  <title>beego orm 使用 | 岽</title>
   
 
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2019/12/16/%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2019/12/17/beego-orm-%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dong">
@@ -278,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">仓库管理系统开发杂记</h1>
+          <h1 class="post-title" itemprop="name headline">beego orm 使用</h1>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T18:51:44+08:00">
-                2019-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-17T17:03:29+08:00">
+                2019-12-17
               </time>
             
 
@@ -313,8 +313,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linx-java/" itemprop="url" rel="index">
-                    <span itemprop="name">linx,java</span>
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
                   </a>
                 </span>
 
@@ -350,23 +350,23 @@
       
 
       
-        <h3 id="java-中时间格式化"><a href="#java-中时间格式化" class="headerlink" title="java 中时间格式化"></a>java 中时间格式化</h3><h3 id="linux-后台运行程序命令"><a href="#linux-后台运行程序命令" class="headerlink" title="linux 后台运行程序命令"></a>linux 后台运行程序命令</h3><a id="more"></a>
+        <p>使用 beego orm  进行数据库操作</p>
+<a id="more"></a>
 
-<h3 id="java时间格式化"><a href="#java时间格式化" class="headerlink" title="java时间格式化"></a>java时间格式化</h3><p>在仓库管理系统中使用了 toLocakString 这个过期方法导致<br>部署到云服务器时和自己开发环境中效果不同，使得无法正确的查询<br>出数据库中的数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//由于方法过期 所以需要自己来手动将时间格式化</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line"><span class="comment">//首先 定义好格式化格式 注意  HH 是 24小时  hh 是12小时制</span></span><br><span class="line">Date now = <span class="keyword">new</span> Date();</span><br><span class="line">String end = sdf.format(now.getTime());<span class="comment">//获取当前时间并格式化</span></span><br><span class="line"><span class="comment">//在对日期字符进行操作 就可以获取当天当时时段的两个数据</span></span><br><span class="line"><span class="comment">//然后就可以愉快的去数据库查找了</span></span><br><span class="line">String [] s = end.split(<span class="string">" "</span>);  </span><br><span class="line">String  start = s[<span class="number">0</span>]+<span class="string">" 00:00:00"</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="linux-后台运行命令"><a href="#linux-后台运行命令" class="headerlink" title="linux 后台运行命令"></a>linux 后台运行命令</h3><p>在平时使用ssh 连接云服务器时运行程序都是手动 java -jar<br>但是关闭连接后就会导致程序自动关闭   如何让程序一直运行</p>
-<ol>
-<li><pre><code>nohup  java -jar  xxxx.jar &amp;  
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用该指令就可以实现 不关闭的 后台运行程序但是这样子输出都会到系统默认指定的输出文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.</span><br></pre></td></tr></table></figure>
-nohup  java -jar  xxxx.jar &gt;out.txt &amp;  
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">自己指定输出文件</span><br><span class="line"></span><br><span class="line">查看已经运行的java 程序</span><br></pre></td></tr></table></figure>
- ps  -ef   //所有运行的进程
- ps -ef|grep java
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">    kill -9  xxx</span><br></pre></td></tr></table></figure>
-</code></pre></li>
-</ol>
-<p>这样即使关闭连接 程序也一直在云服务器里一直运行了</p>
+<h1 id="最近打算使用beego-开发一个通用cms内容管理系统一"><a href="#最近打算使用beego-开发一个通用cms内容管理系统一" class="headerlink" title="最近打算使用beego 开发一个通用cms内容管理系统一"></a>最近打算使用beego 开发一个通用cms内容管理系统一</h1><h3 id="安装beego"><a href="#安装beego" class="headerlink" title="安装beego"></a>安装beego</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/astaxie/beego</span><br></pre></td></tr></table></figure>
 
+<h3 id="创建Model"><a href="#创建Model" class="headerlink" title="创建Model"></a>创建Model</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">type</span>  Page <span class="keyword">struct</span> &#123;</span><br><span class="line">Id <span class="keyword">int</span></span><br><span class="line">Website <span class="keyword">string</span></span><br><span class="line">Email   <span class="keyword">string</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	_<span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">	<span class="string">"github.com/astaxie/beego/orm"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="初始化函数中-进行mysql驱动加载"><a href="#初始化函数中-进行mysql驱动加载" class="headerlink" title="初始化函数中 进行mysql驱动加载"></a>初始化函数中 进行mysql驱动加载</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	orm.RegisterDataBase(<span class="string">"default"</span>,<span class="string">"mysql"</span>,<span class="string">"root:Yad@121413@tcp(117.50.97.181:3306)/cms?charset=utf8"</span>)</span><br><span class="line">	orm.RegisterModel(<span class="built_in">new</span>(Page))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意时 root 加  : 之前使用 @ 导致了一些错误</p>
+<h3 id="进行查询操作"><a href="#进行查询操作" class="headerlink" title="进行查询操作"></a>进行查询操作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">GetPage</span><span class="params">()</span><span class="title">Page</span></span>  &#123;</span><br><span class="line">	p:=Page&#123;Id:<span class="number">1</span>&#125;</span><br><span class="line">	o:= orm.NewOrm()</span><br><span class="line">	err:=o.Read(&amp;p)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span> &#123;</span><br><span class="line">		log.Panic(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进行更新操作"><a href="#进行更新操作" class="headerlink" title="进行更新操作"></a>进行更新操作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">UpdatePage</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	p := Page&#123;Id:<span class="number">1</span>,Email:<span class="string">"qqqqqqqqqqqqqqqqqqqqqqqqqq"</span>&#125;</span><br><span class="line">	o:=orm.NewOrm()</span><br><span class="line">	i,err:=o.Update(&amp;p,<span class="string">"Email"</span>) <span class="comment">//如果指定字段更新 需要加</span></span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span> &#123;</span><br><span class="line">		log.Panic(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"%v\n"</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进行插入操作"><a href="#进行插入操作" class="headerlink" title="进行插入操作"></a>进行插入操作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">InsertPage</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	p:=Page&#123;Email:<span class="string">"3q"</span>,Website:<span class="string">"yadwebsite"</span>&#125;</span><br><span class="line">	o:=orm.NewOrm()</span><br><span class="line">	i,err:=o.Insert(&amp;p)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span> &#123;</span><br><span class="line">		log.Panic(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"%v\n"</span>,i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为时cms 需要登录 需要session</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(c *MainController)</span> <span class="title">Get</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c.SetSession(<span class="string">"user"</span>,<span class="string">"yad"</span>)</span><br><span class="line">	user:=c.GetSession(<span class="string">"user"</span>)</span><br><span class="line">	fmt.Printf(<span class="string">"%s\n"</span>,user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -383,7 +383,7 @@ nohup  java -jar  xxxx.jar &gt;out.txt &amp;
       
         <div class="post-tags">
           
-            <a href="/tags/linux-java/" rel="tag"># linux,java</a>
+            <a href="/tags/go/" rel="tag"># go</a>
           
         </div>
       
@@ -396,8 +396,8 @@ nohup  java -jar  xxxx.jar &gt;out.txt &amp;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/10/%E5%9C%A8coding-%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E9%81%87%E5%88%B0de%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/" rel="next" title="在coding 上部署hexo遇到de一个问题">
-                <i class="fa fa-chevron-left"></i> 在coding 上部署hexo遇到de一个问题
+              <a href="/2019/12/16/%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/" rel="next" title="仓库管理系统开发杂记">
+                <i class="fa fa-chevron-left"></i> 仓库管理系统开发杂记
               </a>
             
           </div>
@@ -405,10 +405,6 @@ nohup  java -jar  xxxx.jar &gt;out.txt &amp;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/17/beego-orm-%E4%BD%BF%E7%94%A8/" rel="prev" title="beego orm 使用">
-                beego orm 使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -554,7 +550,7 @@ nohup  java -jar  xxxx.jar &gt;out.txt &amp;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-中时间格式化"><span class="nav-number">1.</span> <span class="nav-text">java 中时间格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-后台运行程序命令"><span class="nav-number">2.</span> <span class="nav-text">linux 后台运行程序命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java时间格式化"><span class="nav-number">3.</span> <span class="nav-text">java时间格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-后台运行命令"><span class="nav-number">4.</span> <span class="nav-text">linux 后台运行命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最近打算使用beego-开发一个通用cms内容管理系统一"><span class="nav-number">1.</span> <span class="nav-text">最近打算使用beego 开发一个通用cms内容管理系统一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装beego"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装beego</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建Model"><span class="nav-number">1.0.2.</span> <span class="nav-text">创建Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入包"><span class="nav-number">1.0.3.</span> <span class="nav-text">导入包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化函数中-进行mysql驱动加载"><span class="nav-number">1.0.4.</span> <span class="nav-text">初始化函数中 进行mysql驱动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行查询操作"><span class="nav-number">1.0.5.</span> <span class="nav-text">进行查询操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行更新操作"><span class="nav-number">1.0.6.</span> <span class="nav-text">进行更新操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行插入操作"><span class="nav-number">1.0.7.</span> <span class="nav-text">进行插入操作</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
