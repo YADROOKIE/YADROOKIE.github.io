@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -79,14 +79,15 @@
 
 
 
-<meta name="description" content="我的第一篇博客这是我的第一篇hexo博客，–Dong">
+<meta name="description" content="放假回家，喜欢用台式机敲代码，但是有时也要笔记本来。代码托管到GitHub通过GitHub同步代码。让我随时随地码起来">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2&#x2F;index.html">
+<meta property="og:title" content="git多设备同步代码">
+<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2020&#x2F;01&#x2F;10&#x2F;git%E5%A4%9A%E8%AE%BE%E5%A4%87%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81&#x2F;index.html">
 <meta property="og:site_name" content="岽">
-<meta property="og:description" content="我的第一篇博客这是我的第一篇hexo博客，–Dong">
+<meta property="og:description" content="放假回家，喜欢用台式机敲代码，但是有时也要笔记本来。代码托管到GitHub通过GitHub同步代码。让我随时随地码起来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-18T14:31:19.905Z">
+<meta property="og:updated_time" content="2020-01-10T09:11:57.757Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://yadong.github.io/2019/11/18/我的第一篇博客/"/>
+  <link rel="canonical" href="https://yadong.github.io/2020/01/10/git多设备同步代码/"/>
 
 
 
 
 
-  <title>我的第一篇博客 | 岽</title>
+  <title>git多设备同步代码 | 岽</title>
   
 
 
@@ -260,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2019/11/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2020/01/10/git%E5%A4%9A%E8%AE%BE%E5%A4%87%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dong">
@@ -277,7 +278,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我的第一篇博客</h1>
+          <h1 class="post-title" itemprop="name headline">git多设备同步代码</h1>
         
 
         <div class="post-meta">
@@ -289,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-18T22:26:14+08:00">
-                2019-11-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T17:01:43+08:00">
+                2020-01-10
               </time>
             
 
@@ -299,6 +300,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -327,8 +350,12 @@
       
 
       
-        <h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>这是我的第一篇hexo博客，–<code>Dong</code></p>
-
+        <p>放假回家，喜欢用台式机敲代码，但是有时也要笔记本来。<br>代码托管到GitHub通过GitHub同步代码。让我随时随地码起来</p>
+<a id="more"></a>
+<h4 id="一"><a href="#一" class="headerlink" title="一"></a>一</h4><pre><code>在台式机上安装git 并配置好ssh（笔记本上以及有git）</code></pre><h4 id="二"><a href="#二" class="headerlink" title="二"></a>二</h4><pre><code>将代码在github中建好仓库并托管上去。</code></pre><h4 id="三"><a href="#三" class="headerlink" title="三"></a>三</h4><pre><code>在台式机上git clone 仓库</code></pre><h4 id="四"><a href="#四" class="headerlink" title="四"></a>四</h4><pre><code>当在一台电脑编码完并部署到GitHub上后。
+在另一台电脑直接git pull master origin 就会自动完成拉取合并代码啦
+别的就都是正常的 git add .  git commit -m &quot;&quot; git push origin master
+就可以愉快的随意切换啦~~~~</code></pre>
       
     </div>
     
@@ -343,6 +370,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
 
       
       
@@ -352,15 +385,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/01/10/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA-%E8%99%9A%E6%8B%9F%E5%8C%96-1/" rel="next" title="读操作系统导论-虚拟化-1.进程">
+                <i class="fa fa-chevron-left"></i> 读操作系统导论-虚拟化-1.进程
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/08/hexo-%E4%BD%BF%E7%94%A8%E6%8C%87%E4%BB%A4/" rel="prev" title="hexo 使用指令">
-                hexo 使用指令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -506,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我的第一篇博客"><span class="nav-number">1.</span> <span class="nav-text">我的第一篇博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三"><span class="nav-number">3.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四"><span class="nav-number">4.</span> <span class="nav-text">四</span></a></li></ol></div>
             
 
           </div>
