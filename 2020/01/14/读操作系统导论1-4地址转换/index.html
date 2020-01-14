@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="前提：上下文切换  A程序正在运行，被时钟中断。 硬件将A的寄存器保存在内核栈A中,转入内核模式,跳入陷阱处理程序。 时钟中断处理程序中决定从A 切换到 B 调用swictch()例程 将A 寄存器保存到进程结构A将进程结构恢复到 寄存器 B 从陷阱返回 从内核栈B 恢复寄存器 B转向用户模式跳到程序计数器BB运行。。。。通过时钟中断，操作系统取得了cpu的完全主导。通过上下文切换就可以实现进程之">
+<meta name="description" content="和虚拟化cpu一样，在虚拟化cpu时用户所感受到的是无数个cpu在为自己服务，但事实上只有一个cpu在不停的切换进程来达到这个效果而易（时分共享）。同时cpu依托受限直接执行这个机制提高了运行的效率。在内存中也同样需要虚拟化，让用户感受到自己所使用的内存是属于自己的一片内存。这其中所用到的机制就是 地址转换">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读操作系统导论1.3调度策略">
-<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2020&#x2F;01&#x2F;12&#x2F;%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-3%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5&#x2F;index.html">
+<meta property="og:title" content="读操作系统导论1.4地址转换">
+<meta property="og:url" content="https:&#x2F;&#x2F;yadong.github.io&#x2F;2020&#x2F;01&#x2F;14&#x2F;%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-4%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2&#x2F;index.html">
 <meta property="og:site_name" content="岽">
-<meta property="og:description" content="前提：上下文切换  A程序正在运行，被时钟中断。 硬件将A的寄存器保存在内核栈A中,转入内核模式,跳入陷阱处理程序。 时钟中断处理程序中决定从A 切换到 B 调用swictch()例程 将A 寄存器保存到进程结构A将进程结构恢复到 寄存器 B 从陷阱返回 从内核栈B 恢复寄存器 B转向用户模式跳到程序计数器BB运行。。。。通过时钟中断，操作系统取得了cpu的完全主导。通过上下文切换就可以实现进程之">
+<meta property="og:description" content="和虚拟化cpu一样，在虚拟化cpu时用户所感受到的是无数个cpu在为自己服务，但事实上只有一个cpu在不停的切换进程来达到这个效果而易（时分共享）。同时cpu依托受限直接执行这个机制提高了运行的效率。在内存中也同样需要虚拟化，让用户感受到自己所使用的内存是属于自己的一片内存。这其中所用到的机制就是 地址转换">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;sjf.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;rr.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;mlfq.png">
-<meta property="og:updated_time" content="2020-01-12T03:52:26.305Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;dzzhhhhhhhhh.png">
+<meta property="og:updated_time" content="2020-01-14T04:13:47.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;sjf.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;abc.gsyad51.cn&#x2F;dzzhhhhhhhhh.png">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://yadong.github.io/2020/01/12/读操作系统导论1-3调度策略/"/>
+  <link rel="canonical" href="https://yadong.github.io/2020/01/14/读操作系统导论1-4地址转换/"/>
 
 
 
 
 
-  <title>读操作系统导论1.3调度策略 | 岽</title>
+  <title>读操作系统导论1.4地址转换 | 岽</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2020/01/12/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-3%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5/">
+    <link itemprop="mainEntityOfPage" href="https://yadong.github.io/2020/01/14/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-4%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dong">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">读操作系统导论1.3调度策略</h1>
+          <h1 class="post-title" itemprop="name headline">读操作系统导论1.4地址转换</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-12T11:25:11+08:00">
-                2020-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-14T11:41:23+08:00">
+                2020-01-14
               </time>
             
 
@@ -354,20 +352,25 @@
       
 
       
-        <p>前提：上下文切换</p>
-<ol>
-<li>A程序正在运行，被时钟中断。</li>
-<li>硬件将A的寄存器保存在内核栈A中,转入内核模式,跳入陷阱处理程序。</li>
-<li>时钟中断处理程序中决定从A 切换到 B</li>
-<li>调用swictch()例程 将A 寄存器保存到进程结构A<pre><code>将进程结构恢复到 寄存器 B</code></pre> 从陷阱返回</li>
-<li>从内核栈B 恢复寄存器 B<br>转向用户模式<br>跳到程序计数器B<br>B运行。。。。<br>通过时钟中断，操作系统取得了cpu的完全主导。<br>通过上下文切换就可以实现进程之前的来回切换。<br>但是怎么切换 什么时候切换 什么情况切换 都是需要一个调度算法来调度的。<a id="more"></a>
+        <p>和虚拟化cpu一样，在虚拟化cpu时用户所感受到的是无数个cpu在为自己服务，但事实上只有一个cpu在不停的切换进程来达到这个效果而易（时分共享）。同时cpu依托受限直接执行这个机制提高了运行的效率。<br>在内存中也同样需要虚拟化，让用户感受到自己所使用的内存是属于自己的一片内存。<br>这其中所用到的机制就是 <strong>地址转换</strong></p>
+<a id="more"></a>
 
-</li>
+<p><img src="http://abc.gsyad51.cn/dzzhhhhhhhhh.png" alt="内存虚拟化"></p>
+<p>在平时运行的程序中譬如 c  我们会遇到地址，0x016  …<br>这会让我觉得我们的程序中变量函数的 地址就在那个地方，但事实上我们所运行的程序中除了操作系统和硬件都不会知道真实的物理地址。一切都是操作系统配合硬件为我们虚拟化出来的样子。</p>
+<p>而实现cpu虚拟化是如何实现的。用到了基于硬件的地址转换，</p>
+<h4 id="地址转换"><a href="#地址转换" class="headerlink" title="地址转换"></a>地址转换</h4><p>地址转换是受限直接执行的补充。</p>
+<p>程序每一次进行内存访问，都经过地址转换而从虚拟地址重新指向物理地址。<br>操作系统就是基于这一个机制进行管理内存，将内存中占用和空闲内存记录下来，进行谨慎的控制。<br>（都会有一个表来记录）</p>
+<p>硬件取得进程要访问的地址，将其转换成物理地址，这一重定向是运行时发生的，也成为动态重定向。</p>
+<p>但是实现以上效果后还有一个问题，我们需要将进程进行隔离，避免造成程序相互干扰的情况，或者恶意程序破坏别的程序。</p>
+<p>这样又有了两个寄存器来帮助，基址寄存器和界限寄存器就很好的帮助进程进行隔离，这两个寄存器会记录程序在内存中所占用的位置范围，一旦有操作越界就会触发异常，让操作系统来进行处理一般情况下操作系统都会杀死这些恶意程序。</p>
+<p>当一个进程进行运行时的过程</p>
+<ol>
+<li>操作系统进入内核态为进程分配好内存，将程序的界限存储来 基址 和 界限 寄存器中。然后切换回来。其中程序的虚拟内存会动态重定向到物理内存。</li>
+<li>如果有程序越界就会触发异常，让操作系统来处理。</li>
+<li>到要进程切换时，每个cpu 只有一个基址界限寄存器，操作系统就会保存和恢复 基址 界限 寄存器中的数据。</li>
+<li>进程终止时，操作系统回收进程的内存，将这些内存放入内存空闲列表。</li>
 </ol>
-<h3 id="确定工作负载是调度策略的关键部分"><a href="#确定工作负载是调度策略的关键部分" class="headerlink" title="确定工作负载是调度策略的关键部分"></a>确定工作负载是调度策略的关键部分</h3><p>工作负载：运行时间，是否只用cpu,开始时间。。。</p>
-<p>调度指标：1.周转时间 2.响应时间<br>下面用图来介绍。<br><img src="http://abc.gsyad51.cn/sjf.png" alt="sjf"></p>
-<p>从上图中可以知道，fifo sjf stcf 都是依靠调度指标来进行优化的。<br>但是不可能一直运行一个程序我们现实情况都是这样，在平时操纵电脑时没有那一次时一直等一个程序运行好了才继续运行别的。<br>这时就需要时钟中断来实现轮转策略，你运行一下，我运行一下。<br><img src="http://abc.gsyad51.cn/rr.png" alt="rr"></p>
-<p>可是来回一直轮转运行也不行，有些程序轮转运行的周转时间太长。<br>我们既要 周转时间相对的短 也要降低响应时间于是有了 MLFQ<br><img src="http://abc.gsyad51.cn/mlfq.png" alt="mlfq"></p>
+<p>这样子基址界限  加 动态重定向 实现了内存的虚拟化，但是这样还是会造成一些空闲的内存碎片浪费了内存空间。</p>
 
       
     </div>
@@ -398,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/11/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-2%E5%8F%97%E9%99%90%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C/" rel="next" title="读操作系统导论1.2受限直接执行">
-                <i class="fa fa-chevron-left"></i> 读操作系统导论1.2受限直接执行
+              <a href="/2020/01/13/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-3%E5%BD%A9%E7%A5%A8%EF%BC%88%E6%AD%A5%E9%95%BF%EF%BC%89%E6%9C%BA%E5%88%B6/" rel="next" title="读操作系统导论1.3彩票（步长）机制">
+                <i class="fa fa-chevron-left"></i> 读操作系统导论1.3彩票（步长）机制
               </a>
             
           </div>
@@ -407,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/13/%E8%AF%BB%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA1-3%E5%BD%A9%E7%A5%A8%EF%BC%88%E6%AD%A5%E9%95%BF%EF%BC%89%E6%9C%BA%E5%88%B6/" rel="prev" title="读操作系统导论1.3彩票（步长）机制">
-                读操作系统导论1.3彩票（步长）机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#确定工作负载是调度策略的关键部分"><span class="nav-number">1.</span> <span class="nav-text">确定工作负载是调度策略的关键部分</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址转换"><span class="nav-number">1.</span> <span class="nav-text">地址转换</span></a></li></ol></div>
             
 
           </div>
