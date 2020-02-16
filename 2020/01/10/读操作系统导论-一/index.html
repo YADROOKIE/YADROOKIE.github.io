@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="岽">
 <meta property="og:description" content="寒假买了本操作系统导论来进行学习，不知道自己能吸收多少，希望每天学习完后通过博客来进行输出。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-10T01:51:04.807Z">
+<meta property="og:updated_time" content="2020-02-16T04:46:45.493Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -354,12 +354,29 @@
 <a id="more"></a>
 
 <h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><h5 id="一个正在运行的程序做了什么"><a href="#一个正在运行的程序做了什么" class="headerlink" title="一个正在运行的程序做了什么"></a>一个正在运行的程序做了什么</h5><p>1.处理器从内存中获取（fetch）一条指令<br>2.对其进行解码（decode）<br>3.执行（execute）</p>
-<h5 id="操作系统时干嘛的"><a href="#操作系统时干嘛的" class="headerlink" title="操作系统时干嘛的"></a>操作系统时干嘛的</h5><p>操作系统时一种让程序运行变得容易。<br>允许程序共享内存，<br>让程序能够与设备交互，<br>以及其他一些功能的  –软件</p>
+<h5 id="操作系统是干嘛的"><a href="#操作系统是干嘛的" class="headerlink" title="操作系统是干嘛的"></a>操作系统是干嘛的</h5><p>操作系统时一种让程序运行变得容易。<br>允许程序<strong>共享内存</strong>，<br>让程序能够<strong>与设备交互</strong>，<br>以及其他一些功能的  –<strong>软件</strong><br><strong>是管理计算机硬件和软件资源，合理调度作业运行，方便用户使用的程序集</strong></p>
 <h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><p>这本书将围绕三部分展开。<br>虚拟化，并发，持久性</p>
-<h4 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h4><p>1.将计算机的物理资源虚拟化，让用户通过操作系统提供的系统调用（system call）来操作计算机。<br>    操作系统也可以被成为资源管理器，因为管理着cpu ,内存 等计算机资源。<br>2.虚拟化将cpu资源虚拟化成无数个cpu，事实上cpu一次只能运行一个程序。通过虚拟化让用户感受到有无数个cpu课同时执行很多程序。<br>3.虚拟化内存。</p>
+<h4 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h4><p>1.将计算机的物理资源虚拟化，让用户通过操作系统提供的系统调用（system call）来操作计算机。<br>    操作系统也可以被成为资源管理器，因为管理着cpu ,内存 等计算机资源。<br>2.虚拟化将cpu资源虚拟化成无数个cpu，事实上 单cpu 一次只能运行一个程序。通过虚拟化让用户感受到有无数个cpu课同时执行很多程序。<br>3.虚拟化内存。</p>
 <h4 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h4><p>学习过多线程的我们都会知道，多线程进行资源竞争时会出现很多问题。<br>原因：程序进行因为不是原子方式执行（atomically）<br>        会进行如下步骤：1.加载竞争资源（比如  int a = 64）<br>                       2.进行计算（a++）<br>                       3.保存回进程<br>        这样子就会导致一些问题比如（两个线程对一个地址上的值进行累加到一定数值，导致最后数值大于设定好的数值）</p>
 <h4 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h4><p>数据的存储等问题</p>
 <p>设计操作系统的目标<br>·提高性能，最小化操作系统开销（minimize the overhead）<br>·为应用程序之间，OS和应用程序之间提供保护。</p>
+<hr>
+<h3 id="以下为课程内容"><a href="#以下为课程内容" class="headerlink" title="以下为课程内容"></a>以下为课程内容</h3><h6 id="操作系统是什么"><a href="#操作系统是什么" class="headerlink" title="操作系统是什么"></a>操作系统是什么</h6><p><strong>是管理计算机硬件和软件资源，合理调度作业运行，方便用户使用的程序集</strong></p>
+<ol>
+<li>操作系统是程序集合，是唯一和硬件通信的系统软件。</li>
+<li>管理硬件资源 软件资源</li>
+<li>合理调度作业运行</li>
+<li>方便用户<h6 id="操作系统的目的"><a href="#操作系统的目的" class="headerlink" title="操作系统的目的"></a>操作系统的目的</h6>  有效性 方便性  开放性  可扩充性<h6 id="操作系统作用"><a href="#操作系统作用" class="headerlink" title="操作系统作用"></a>操作系统作用</h6>·用户观点：操作系统是用户与硬件系统的接口<br>·系统观点：操作系统是资源管理者<br>·功能扩充观点：操作系统用作扩充机（把覆盖了软件的机器称为扩充机）</li>
+</ol>
+<h6 id="操作系统发展过程"><a href="#操作系统发展过程" class="headerlink" title="操作系统发展过程"></a>操作系统发展过程</h6><pre><code>无操作系统的计算机系统  </code></pre><p><strong>单道批处理系统</strong>  特性：自动性 顺序性 弹道性<br><strong>多道批处理系统</strong><br>内存存放若干程序，可交替执行<br>特征：多道性  调度性   无序性<br>技术指标： 周转时间—指程序从提交到完成所用的时间<br>优点： 1.资源利用率高 2.系统吞吐量打<br>缺点   1. 无交互能力  2. 平均周转时间长<br><strong>分时系统</strong><br>通过时间片轮转技术 提高了交互性<br>特性： 多路性   独立性  及时性  交互性<br>技术指标： 响应时间–从用户向系统发出请求，到小偷响应为止的时间；</p>
+<h6 id="操作系统特征"><a href="#操作系统特征" class="headerlink" title="操作系统特征"></a>操作系统特征</h6><p>并发性<br>共享性：系统资源可供多个并发执行的进程共同使用，互斥共享–打印机，缓冲区   同时共享–内存，磁盘<br>虚拟性<br>异步性</p>
+<h6 id="操作系统主要功能"><a href="#操作系统主要功能" class="headerlink" title="操作系统主要功能"></a>操作系统主要功能</h6><p><strong>1.处理机cpu 管理</strong><br>进程控制<br>进程同步<br>进程通信<br>进程调度  </p>
+<p><strong>2.存储器内存 管理功能</strong><br>存储分配与回收<br>存储保护   ：进程之间的隔离性<br>地址变换  ：将逻辑地址映射为物理地址<br>虚拟存储器  ：让用户觉得内存无限大</p>
+<p><strong>3.设备管理功能</strong><br>·设备操作 ：利用设备驱动程序完成对设备的操作<br>·缓冲区管理：匹配cpu和外设的速度，提高利用率<br>·设备独立性：<br>·虚拟设备</p>
+<p><strong>4.文件管理功能</strong><br>·文件存储空间管理<br>·目录管理<br>·文件读写权限等管理</p>
+<p><strong>5.接口</strong></p>
+<h6 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h6><p>·无结构<br>·模块化结构<br>    优点：1.多模块齐头并进 提高开效率<br>          2.提高os可理解性可维护性<br>    缺点：设计难度增加<br>        1.系统设计时，模块划分和接口定义不精致，很难满足实际需求<br>        2.各模块齐头并进，很难做到都稳定，造成模块依赖关系复杂<br>·分层结构<br>cpu管理 -》内存管理 -》设备管理 一层一层上去<br>    优点：1.功能明确，调用关系清晰<br>        2.高层低层可分别实现，高层错误不会影响到低层。<br>    缺点：每执行一个功能，要自上而下穿越多个层次，降低了效率。<br>·微内核结构<br>d c c c a<br>c d a d c</p>
+<p>7 </p>
 
       
     </div>
@@ -548,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一个正在运行的程序做了什么"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个正在运行的程序做了什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#操作系统时干嘛的"><span class="nav-number">1.0.2.</span> <span class="nav-text">操作系统时干嘛的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化"><span class="nav-number">2.1.</span> <span class="nav-text">虚拟化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发"><span class="nav-number">2.2.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久性"><span class="nav-number">2.3.</span> <span class="nav-text">持久性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一"><span class="nav-number">1.</span> <span class="nav-text">一</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一个正在运行的程序做了什么"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个正在运行的程序做了什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#操作系统是干嘛的"><span class="nav-number">1.0.2.</span> <span class="nav-text">操作系统是干嘛的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二"><span class="nav-number">2.</span> <span class="nav-text">二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化"><span class="nav-number">2.1.</span> <span class="nav-text">虚拟化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发"><span class="nav-number">2.2.</span> <span class="nav-text">并发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久性"><span class="nav-number">2.3.</span> <span class="nav-text">持久性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下为课程内容"><span class="nav-number">3.</span> <span class="nav-text">以下为课程内容</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统是什么"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">操作系统是什么</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统的目的"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">操作系统的目的</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统作用"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">操作系统作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统发展过程"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">操作系统发展过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统特征"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">操作系统特征</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统主要功能"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">操作系统主要功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作系统结构"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">操作系统结构</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
